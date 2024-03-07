@@ -3,6 +3,7 @@
 draw pascal triangle
 """
 
+
 def factoral(n):
     """find factorial of a number"""
     if n == -1:
@@ -10,6 +11,7 @@ def factoral(n):
     if n == 0:
         return 1
     return n * factoral(n - 1)
+
 
 def find_number(n, m):
     """find the number at the nth row and mth column"""
@@ -31,7 +33,8 @@ def find_number(n, m):
     if n_num - m < 0:
         m_com_other_fac_num = 0
     else:
-        m_com_other_fac_num = int(n_com_fac / (m_com_other_fac * factoral(n_num - m)))
+        cal = int(n_com_fac / (m_com_other_fac * factoral(n_num - m)))
+        m_com_other_fac_num = cal
     return m_com_other_fac_num + main_comb_num
 
 
