@@ -13,6 +13,7 @@ def pascal_triangle(n):
             if j == 0 or j == i:
                 inner_numbers.append(1)
             elif i > 0 and j > 0:
-                inner_numbers.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+                adder = triangle[i - 1][j]
+                inner_numbers.append(triangle[i - 1][j - 1] + adder)
         triangle.append(inner_numbers)
     return triangle
