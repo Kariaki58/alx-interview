@@ -41,7 +41,7 @@ def find_number(n, m):
 def pascal_triangle(n):
     """return the diagram"""
     if n <= 0:
-        return [[]]
+        return []
     triangle = []
     for i in range(n):
         triangle.append([find_number(i, j) for j in range(i + 1)])
