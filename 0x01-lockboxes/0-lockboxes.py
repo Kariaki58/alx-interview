@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """lockboxes"""
 
+
 def canUnlockAll(boxes):
     """unlock a box"""
     if not boxes:
