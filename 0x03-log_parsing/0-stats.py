@@ -1,40 +1,43 @@
 #!/usr/bin/python3
-"""log parsing"""
+"""
+log parsing
+"""
 import sys
+import re
 
 
+lines_processed = 0
+status_code_counts = {}
 total_file_size = 0
-status_code_counts = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
-line_count = 0
 
 try:
     for line in sys.stdin:
-        parts = line.split()
-        if len(parts) >= 7 and parts[5].isdigit() and parts[6].isdigit():
-            status_code = int(parts[5])
-            file_size = int(parts[6])
-            total_file_size += file_size
-            if status_code in status_code_counts:
-                status_code_counts[status_code] += 1
-            line_count += 1
-            if line_count % 10 == 0:
-                print(f"Total file size: {total_file_size}")
-                for code, count in sorted(status_code_counts.items()):
-                    if count > 0:
-                        print(f"{code}: {count}")
+        lines_processed += 1
+        match = re.search(
+            line)
+        match = re.search(
+            '^\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}\\s-\\s\\[[\\d -:.]*\
+\\]\\s"GET\\s\\/projects\\/260\\sHTTP\\/1.1"\\s\\d{1,3}\\s\\d{1,4}$',
+            line)
+        if match:
+            status_match = re.search("(?<=1.1\" )\\d{1,3}", line)
+            file_size_match = re.search("\\d{1,4}$", line)
+            if status_code_counts.get(status_match.group()):
+                status_code_counts[status_match.group()] = status_code_counts.get(
+                    status_match.group()) + 1
+            else:
+                status_code_counts[status_match.group()] = 1
+            total_file_size += int(file_size_match.group())
+        else:
+            continue
 
-        if line_count % 10 == 0:
-            try:
-                sys.stdin.__next__()
-            except KeyboardInterrupt:
-                print(f"Total file size: {total_file_size}")
-                for code, count in sorted(status_code_counts.items()):
-                    if count > 0:
-                        print(f"{code}: {count}")
-                break
+        if lines_processed % 10 == 0:
+            print(f"File size: {total_file_size}")
+            for status_code in sorted(status_code_counts):
+                print(f"{status_code}: {status_code_counts[status_code]}")
 
-except KeyboardInterrupt:
-    print(f"Total file size: {total_file_size}")
-    for code, count in sorted(status_code_counts.items()):
-        if count > 0:
-            print(f"{code}: {count}")
+finally:
+    print(f"File size: {total_file_size}")
+    for status_code in sorted(status_code_counts):
+        print(f"{status_code}: {status_code_counts[status_code]}")
+
