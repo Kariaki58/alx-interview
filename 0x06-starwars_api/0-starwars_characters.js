@@ -4,7 +4,7 @@ const request = require('request');
 const args = process.argv.slice(2);
 
 
-const resource = 'https://swapi-api.alx-tools.com/api/films/' + args[0];
+const resource = `https://swapi-api.alx-tools.com/api/films/${args[0]}`;
 
 request(resource, async function (error, response, body) {
   if (!error) {
