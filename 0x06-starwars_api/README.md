@@ -1,7 +1,3 @@
-
-write a readme mark down for this project
-
-
 # Star Wars Characters Game
 
 ## Overview
