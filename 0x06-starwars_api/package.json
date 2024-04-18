@@ -1,0 +1,12 @@
+{
+  "name": "0x06-starwars_api",
+  "version": "1.0.0",
+  "description": "## Overview Welcome to the Star Wars Characters Game! This project involves interacting with an external API to fetch and display information about Star Wars characters based on the provided movie ID.",
+  "main": "0-starwars_characters.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
