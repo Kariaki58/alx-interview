@@ -8,6 +8,7 @@ def print_error_message(message):
     print(message)
     sys.exit(1)
 
+
 def is_valid_position(board, row, col):
     """is valid position"""
     for i in range(col):
@@ -22,6 +23,7 @@ def is_valid_position(board, row, col):
 
     return True
 
+
 def solve_nqueens(board, col, results):
     """solve nqueens"""
     if col >= len(board):
@@ -32,6 +34,7 @@ def solve_nqueens(board, col, results):
             board[i][col] = 1
             solve_nqueens(board, col + 1, results)
             board[i][col] = 0  # backtrack
+
 
 def nqueens(n):
     """nqueens"""
