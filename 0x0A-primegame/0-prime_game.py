@@ -1,18 +1,20 @@
 #!/usr/bin/python3
 """Prime Game"""
 
+
 def Prime(n):
     """isPrime"""
     primes = [True for _ in range(1, n + 1, 1)]
     primes[0] = False
     return primes
 
+
 def isWinner(x, nums):
     """is winner"""
     player1 = 0
     player2 = 0
     if x < 1 or not nums:
-        return None 
+        return None
     n = max(nums)
     primes = Prime(n)
     for idx1, is_prime in enumerate(primes, 1):
