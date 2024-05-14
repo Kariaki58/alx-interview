@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""prime game graph theory"""
 
 def isPrime(n):
     """is prime"""
